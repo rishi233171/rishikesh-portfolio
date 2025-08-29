@@ -1,0 +1,99 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.App-header {
+  padding: 40px 20px;
+  color: white;
+}
+
+.portfolio-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.name-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: white;
+}
+
+.job-title {
+  font-size: 2rem;
+  margin: 0 0 10px 0;
+  color: #e3f2fd;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 0 0 40px 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.metric-card h3 {
+  font-size: 2.5rem;
+  margin: 0 0 10px 0;
+  color: #81c784;
+}
+
+.metric-card p {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.contact-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+.contact-section h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #e1f5fe;
+}
+
+.contact-section p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .name-title {
+    font-size: 2.5rem;
+  }
+  .job-title {
+    font-size: 1.5rem;
+  }
+  .metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
