@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+backend/__pycache__/
+backend/venv/
+backend/.env
+
+# Production builds
+frontend/build/
+frontend/dist/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
