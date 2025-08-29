@@ -1,26 +1,19 @@
 {
   "name": "rishikesh-portfolio",
-  "version": "1.0.0",
-  "description": "Professional portfolio dashboard for Rishikesh Mohapatra - Lead Supply Chain Data Analyst",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
   "scripts": {
-    "install-frontend": "cd frontend && npm install",
-    "build-frontend": "cd frontend && npm run build",
-    "start": "cd frontend && npm start"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rishi233171/rishikesh-portfolio-.git"
-  },
-  "keywords": [
-    "portfolio",
-    "data-analyst",
-    "dashboard",
-    "react",
-    "fastapi",
-    "mongodb",
-    "supply-chain",
-    "analytics"
-  ],
-  "author": "Rishikesh Mohapatra <rishi233171@gmail.com>",
-  "license": "MIT"
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  }
 }
