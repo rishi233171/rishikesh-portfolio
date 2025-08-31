@@ -1,34 +1,91 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* RESPONSIVE DASHBOARD CSS - Add to App.css */
+
+/* Default Desktop Layout */
+.dashboard-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 320px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-right: 1px solid #e5e7eb;
+  z-index: 40;
+  overflow-y: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.dashboard-main {
+  margin-left: 320px;
+  padding: 32px;
+  min-height: 100vh;
+  width: calc(100vw - 320px);
+  box-sizing: border-box;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .dashboard-main {
+    max-width: calc(100vw - 320px);
+  }
 }
 
-.App-link {
-    color: #61dafb;
+/* Medium Desktop (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .dashboard-sidebar {
+    width: 280px;
+  }
+  
+  .dashboard-main {
+    margin-left: 280px;
+    width: calc(100vw - 280px);
+    padding: 24px;
+  }
+  
+  /* Adjust grid for smaller screens */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Tablet and Mobile (767px and below) */
+@media (max-width: 767px) {
+  .dashboard-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .dashboard-main {
+    margin-left: 0;
+    width: 100vw;
+    padding: 16px;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+/* Fix overflow issues */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
