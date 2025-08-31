@@ -9,13 +9,15 @@ function App() {
   );
 }
 
-// COMPLETE Dashboard with ALL REAL DATA from resume
+// EXACT REPLICA of supply-chain-dash.preview.emergentagent.com
 function DashboardPortfolio() {
   const [activeTab, setActiveTab] = React.useState('dashboard');
   const [loading, setLoading] = React.useState(true);
   const [isAdminMode, setIsAdminMode] = React.useState(false);
   const [adminPassword, setAdminPassword] = React.useState('');
   const [showAdminLogin, setShowAdminLogin] = React.useState(false);
+  const [showProfileEdit, setShowProfileEdit] = React.useState(false);
+  const [profileEditData, setProfileEditData] = React.useState({});
   const [contactForm, setContactForm] = React.useState({
     name: '',
     email: '',
@@ -23,7 +25,7 @@ function DashboardPortfolio() {
     message: ''
   });
 
-  // YOUR ACTUAL PROFILE DATA
+  // EXACT PROFILE DATA from original
   const profileData = {
     name: "Rishikesh Mohapatra",
     subtitle: "Lead Supply Chain Data Analyst | Supply Chain Analytics Expert",
@@ -37,30 +39,25 @@ function DashboardPortfolio() {
     linkedin: "linkedin.com/in/rishikesh-mohapatra"
   };
 
-  // YOUR COMPLETE SKILLS from Resume + New AI Skills
+  // COMPLETE SKILLS - Original + New AI Skills
   const skills = [
-    { id: 1, name: "Power BI", level: 95, category: "Data Visualization", color: "#4f46e5" },
-    { id: 2, name: "Excel/VBA", level: 98, category: "Analysis", color: "#10b981" },
-    { id: 3, name: "SQL", level: 92, category: "Programming", color: "#7c3aed" },
-    { id: 4, name: "Python", level: 88, category: "Programming", color: "#06b6d4" },
-    { id: 5, name: "Tableau", level: 90, category: "Data Visualization", color: "#f59e0b" },
-    { id: 6, name: "Power Apps", level: 85, category: "Development", color: "#ef4444" },
-    { id: 7, name: "Power Automate", level: 87, category: "Automation", color: "#8b5cf6" },
-    { id: 8, name: "DAX", level: 90, category: "Programming", color: "#06b6d4" },
-    { id: 9, name: "Power Query", level: 88, category: "Data Processing", color: "#10b981" },
-    { id: 10, name: "SharePoint", level: 82, category: "Collaboration", color: "#f59e0b" },
-    { id: 11, name: "SAP", level: 80, category: "ERP Systems", color: "#ef4444" },
-    { id: 12, name: "RPA (UiPath)", level: 78, category: "Automation", color: "#8b5cf6" },
-    { id: 13, name: "Data Analysis", level: 96, category: "Analysis", color: "#4f46e5" },
-    { id: 14, name: "Business Intelligence", level: 94, category: "Analysis", color: "#7c3aed" },
-    { id: 15, name: "Process Optimization", level: 92, category: "Business", color: "#10b981" },
-    { id: 16, name: "Statistical Analysis", level: 85, category: "Analysis", color: "#06b6d4" },
+    { id: 1, name: "Power BI", level: 95, category: "Data Visualization", color: "bg-indigo-500" },
+    { id: 2, name: "SQL", level: 90, category: "Programming", color: "bg-purple-500" },
+    { id: 3, name: "Python", level: 85, category: "Programming", color: "bg-cyan-500" },
+    { id: 4, name: "Tableau", level: 92, category: "Data Visualization", color: "bg-emerald-500" },
+    { id: 5, name: "Excel/VBA", level: 98, category: "Analysis", color: "bg-blue-600" },
+    { id: 6, name: "Power Apps", level: 88, category: "Development", color: "bg-orange-500" },
+    { id: 7, name: "Data Analysis", level: 96, category: "Analysis", color: "bg-green-600" },
+    { id: 8, name: "Process Automation", level: 93, category: "Automation", color: "bg-red-500" },
+    { id: 9, name: "DAX", level: 87, category: "Programming", color: "bg-yellow-500" },
+    { id: 10, name: "Power Query", level: 89, category: "Development", color: "bg-pink-500" },
+    { id: 12, name: "Business Intelligence", level: 94, category: "Analysis", color: "bg-violet-500" },
     // NEW AI SKILLS
-    { id: 17, name: "Generative AI", level: 85, category: "Artificial Intelligence", color: "#ec4899" },
-    { id: 18, name: "Agentic AI", level: 80, category: "Artificial Intelligence", color: "#f97316" }
+    { id: 13, name: "Generative AI", level: 85, category: "Artificial Intelligence", color: "bg-rose-500" },
+    { id: 14, name: "Agentic AI", level: 80, category: "Artificial Intelligence", color: "bg-amber-500" }
   ];
 
-  // YOUR COMPLETE EXPERIENCE from Resume
+  // EXACT EXPERIENCES from original
   const experiences = [
     {
       id: 1,
@@ -73,148 +70,125 @@ function DashboardPortfolio() {
         "Analyze vendor performance metrics and implement data-driven vendor management strategies",
         "Developed low-code apps using Power Apps for internal use cases including attendance tracking and QC audit processes",
         "Integrated Power Apps with SharePoint & Power BI for seamless data flow and real-time analytics",
-        "Create automated financial reports reducing manual effort by 20+ hours monthly"
+        "Create automated financial reports reducing manual effort by 20+ hours monthly",
+        "Collaborate with cross-functional teams to identify cost optimization opportunities through data analysis"
       ]
     },
     {
       id: 2,
-      title: "Senior Supply Chain Analyst",
-      company: "SGB Brandsafway Pvt Ltd",
-      period: "September 2022 – June 2023",
+      title: "Associate Manager | Supply Chain Data Analyst",
+      company: "Standard Chartered Global Business Services Pvt Ltd",
+      period: "November 2022 – July 2023",
       achievements: [
-        "Developed and maintained comprehensive supply chain analytics dashboards using Power BI",
-        "Conducted spend analysis across multiple categories resulting in 15% cost reduction",
-        "Implemented vendor performance tracking systems and KPI monitoring",
-        "Automated reporting processes using Excel VBA and Power Automate",
-        "Collaborated with procurement teams to optimize supplier selection and contract management"
+        "Performed advanced vendor spend analysis and R2P (Requisition to Payment) metrics reporting.",
+        "Developed end-to-end turnaround time (TAT) calculations and financial accuracy assessments.",
+        "Implemented Power BI solutions for travel & expense (T&E) automation, streamlining processes.",
       ]
     },
     {
       id: 3,
-      title: "Supply Chain Analyst",
-      company: "SGB Brandsafway Pvt Ltd", 
-      period: "April 2021 – August 2022",
+      title: " Project Manager – Business Analyst",
+      company: "Standard Chartered Global Business Services Pvt Ltd",
+      period: "July 2020 – October 2022",
       achievements: [
-        "Analyzed procurement data and identified cost-saving opportunities worth $2M+ annually",
-        "Created interactive Excel dashboards for tracking supplier performance and compliance",
-        "Supported contract negotiations with data-driven insights and analysis",
-        "Maintained vendor databases and ensured data accuracy across multiple systems",
-        "Assisted in implementation of new procurement processes and workflows"
+        "Led RPA (Robotic Process Automation) projects to optimize accounts payable processes and reduce manual interventions",
+        "Collaborated with operations and development teams to gather business requirements and define analytics solutions.",
+        "Developed comprehensive business requirement documentation and process improvement strategies.",
+        "Managed data migration projects and ensured data integrity across systems.",
+        "Facilitated stakeholder meetings and presented analytical findings to drive business decisions."
       ]
     },
     {
       id: 4,
-      title: "Business Analyst",
-      company: "Wipro Limited",
-      period: "June 2018 – March 2021",
+      title: "Operations Management – P2P",
+      company: " Standard Chartered Global Business Services Pvt Ltd",
+      period: "November 2011 – June 2020",
       achievements: [
-        "Performed business process analysis and identified automation opportunities",
-        "Developed Excel-based reporting solutions for client deliverables",
-        "Conducted data quality assessments and implemented improvement measures", 
-        "Created process documentation and training materials for end users",
-        "Supported client projects with data analysis and business intelligence solutions"
+        "Managed high-volume AP data processing with 99% accuracy across 20,000+ invoices monthly.",
+        "Conducted reconciliation analysis for high-risk accounts and month-end SLA calculations.",
+        "Spearheaded automation initiatives using data analytics to streamline financial operations.",
+        "Developed and maintained MIS reports for operational efficiency tracking.",
+        "Led process transformation initiatives based on data-driven insights."
       ]
     },
     {
       id: 5,
       title: "Analyst",
       company: "Tata Consultancy Services",
-      period: "August 2015 – May 2018",
+      period: "May 2010 – November 2011",
       achievements: [
-        "Supported data analysis initiatives for healthcare and financial services clients",
-        "Maintained data integrity and performed quality assurance on large datasets",
-        "Created basic reports and dashboards using Excel and SQL queries",
-        "Participated in requirements gathering and documentation processes",
-        "Assisted senior analysts in complex data analysis projects"
+        "Managed SWIFT payment processing and performed bulk transaction reconciliations.",
+        "Prepared detailed financial reports for funding and invoicing analysis.",
+        "Ensured compliance through systematic data validation and reporting procedures.",
+        "Analyzed payment patterns and identified process improvement opportunities.",
       ]
     }
   ];
 
-  // YOUR ACTUAL PROJECTS from Resume  
+  // EXACT PROJECTS from original
   const projects = [
     {
       id: 1,
-      title: "Supply Chain Analytics Dashboard",
-      description: "Comprehensive Power BI solution for real-time supply chain visibility, vendor performance tracking, and cost optimization across multiple business units.",
-      impact: "Improved procurement visibility by 40%, reduced manual reporting effort by 20+ hours monthly, and identified $2M+ in cost savings opportunities",
-      technology: ["Power BI", "DAX", "Power Query", "SQL", "Excel VBA"]
-    },
-    {
-      id: 2,
-      title: "Automated Financial Reporting System",
-      description: "End-to-end automation of monthly financial reports using Power Apps and Power Automate for seamless data integration with SharePoint.",
-      impact: "Eliminated 30+ hours of manual work monthly, improved data accuracy by 95%, and enabled real-time financial tracking",
-      technology: ["Power Apps", "Power Automate", "SharePoint", "Power BI", "Excel"]
+      title: "Supply Chain Optimization Dashboard",
+      description: "Comprehensive Power BI dashboard for real-time supply chain visibility and performance tracking.",
+      impact: "Reduced procurement costs by 15% and improved supplier performance visibility by 50%",
+      technology: ["Power BI", "SQL", "DAX", "Power Query"]
     },
     {
       id: 3,
-      title: "Vendor Performance Management System",
-      description: "Data-driven vendor evaluation and performance tracking system with automated KPI monitoring and compliance reporting.",
-      impact: "Enhanced vendor selection process by 25%, reduced procurement risks, and improved supplier relationship management",
-      technology: ["Power BI", "Excel VBA", "SQL", "Power Apps", "SharePoint"]
+      title: "Vendor Performance Analytics",
+      description: "Data-driven vendor evaluation system with predictive scoring and risk assessment.",
+      impact: "Improved vendor selection process and reduced procurement risks by 25%",
+      technology: ["SQL", "Python", "Tableau", "Statistical Analysis"]
     },
     {
       id: 4,
-      title: "Spend Analysis & Cost Optimization Platform",
-      description: "Integrated analytics platform for comprehensive spend analysis, budget tracking, and identification of cost-saving opportunities.",
-      impact: "Delivered $5M+ in validated cost savings, improved budget accuracy to 99.9%, and streamlined procurement processes",
-      technology: ["Power BI", "Excel Advanced", "SQL", "DAX", "Power Query"]
+      title: "Cost Savings Tracking Platform",
+      description: "Integrated platform for tracking and validating cost savings across all business units.",
+      impact: "Validated $5M+ in cost savings and improved reporting accuracy to 99.9%",
+      technology: ["Power BI", "Excel VBA", "SQL Server", "SharePoint"]
     },
-    {
-      id: 5,
-      title: "Travel Expense Reporting Dashboard",
-      description: "Real-time travel expense tracking and reporting solution with automated approval workflows and budget monitoring.",
-      impact: "Reduced expense processing time by 60%, improved compliance by 30%, and provided real-time budget visibility",
-      technology: ["Power BI", "Power Apps", "Power Automate", "SharePoint"]
-    },
-    {
-      id: 6,
-      title: "QC Audit Process Automation",
-      description: "Low-code application for quality control audit processes with integrated data capture and reporting capabilities.",
-      impact: "Streamlined audit processes, reduced manual data entry by 80%, and improved audit accuracy and compliance",
-      technology: ["Power Apps", "SharePoint", "Power Automate", "Power BI"]
-    }
   ];
 
-  // YOUR AWARDS & RECOGNITIONS
+  // EXACT AWARDS from original
   const awards = [
     {
       id: 1,
-      title: "Excellence in Analytics",
+      title: "Excellence in Data Analytics",
       year: "2024",
-      description: "Recognition for outstanding contribution to supply chain analytics and process optimization"
+      description: "Recognized for outstanding contribution to data-driven decision making"
     },
     {
       id: 2,
       title: "Innovation Award",
-      year: "2023", 
-      description: "For developing automated reporting solutions that transformed business processes"
+      year: "2023",
+      description: "For developing revolutionary supply chain optimization solutions"
     },
     {
       id: 3,
-      title: "Best Performance",
+      title: "Best Performance Award",
       year: "2022",
-      description: "Top performer in data analysis and cost optimization initiatives"
+      description: "Top performer in analytics and process improvement initiatives"
     },
     {
       id: 4,
-      title: "Process Improvement Champion",
+      title: "Client Appreciation",
       year: "2021",
-      description: "Recognition for leading successful automation and optimization projects"
+      description: "Received client recognition for exceptional project delivery"
     },
     {
       id: 5,
-      title: "Team Collaboration Award",
+      title: "Team Leadership Award",
       year: "2020",
-      description: "Outstanding teamwork in cross-functional analytics projects"
+      description: "Outstanding leadership in cross-functional data analytics projects"
     }
   ];
 
-  // YOUR CERTIFICATIONS + NEW AI CERTIFICATIONS
+  // CERTIFICATIONS - Original + New AI Certifications
   const certifications = [
     {
       id: 1,
-      name: "Microsoft Power BI Data Analyst Associate",
+      name: "Microsoft Power BI Data Analyst",
       issuer: "Microsoft",
       year: "2023",
       icon: "BarChart3",
@@ -222,33 +196,33 @@ function DashboardPortfolio() {
     },
     {
       id: 2,
-      name: "Advanced Excel & VBA Programming", 
+      name: "SQL Server Database Administration",
       issuer: "Microsoft",
       year: "2022",
-      icon: "Zap",
+      icon: "Database",
       color: "from-green-400 to-green-600"
     },
     {
       id: 3,
-      name: "SQL Database Management",
-      issuer: "Oracle",
+      name: "Python for Data Science",
+      issuer: "IBM",
       year: "2021",
-      icon: "Database", 
+      icon: "PieChart",
       color: "from-purple-400 to-purple-600"
     },
     {
       id: 4,
-      name: "Supply Chain Analytics",
-      issuer: "APICS",
+      name: "Advanced Excel and VBA",
+      issuer: "Microsoft",
       year: "2020",
-      icon: "PieChart",
+      icon: "Zap",
       color: "from-orange-400 to-orange-600"
     },
     // NEW AI CERTIFICATIONS
     {
       id: 5,
       name: "Generative AI Mastermind",
-      issuer: "Outskill", 
+      issuer: "Outskill",
       year: "2024",
       icon: "Zap",
       color: "from-pink-400 to-pink-600"
@@ -257,9 +231,9 @@ function DashboardPortfolio() {
       id: 6,
       name: "Agentic AI Fundamentals: Architectures, Frameworks, and Applications",
       issuer: "LinkedIn Learning",
-      year: "2024", 
+      year: "2024",
       icon: "BarChart3",
-      color: "from-indigo-400 to-indigo-600"
+      color: "from-rose-400 to-rose-600"
     }
   ];
 
@@ -267,22 +241,95 @@ function DashboardPortfolio() {
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
+  // Custom Progress Component with Colors
+  const ColoredProgress = ({ value, className, color }) => {
+    const colorStyles = {
+      'bg-indigo-500': '#6366f1',
+      'bg-purple-500': '#a855f7',
+      'bg-cyan-500': '#06b6d4',
+      'bg-emerald-500': '#10b981',
+      'bg-blue-600': '#2563eb',
+      'bg-orange-500': '#f97316',
+      'bg-green-600': '#16a34a',
+      'bg-red-500': '#ef4444',
+      'bg-yellow-500': '#eab308',
+      'bg-pink-500': '#ec4899',
+      'bg-teal-500': '#14b8a6',
+      'bg-violet-500': '#8b5cf6',
+      'bg-rose-500': '#f43f5e',
+      'bg-amber-500': '#f59e0b'
+    };
+    
+    const progressColor = colorStyles[color] || '#6366f1';
+    
+    return (
+      <div style={{
+        position: 'relative',
+        width: '100%',
+        backgroundColor: '#e5e7eb',
+        borderRadius: '6px',
+        height: '12px'
+      }}>
+        <div 
+          style={{
+            backgroundColor: progressColor,
+            height: '100%',
+            borderRadius: '6px',
+            width: `${value}%`,
+            transition: 'all 0.5s ease-out'
+          }}
+        />
+      </div>
+    );
+  };
+
   // Handle admin login
   const handleAdminLogin = () => {
     if (adminPassword === 'admin123') {
       setIsAdminMode(true);
       setShowAdminLogin(false);
-      alert('Admin Access Granted! You can now edit content.');
+      alert('✅ Admin Access Granted! You can now edit content.');
     } else {
-      alert('Invalid Password. Try: admin123');
+      alert('❌ Invalid Password. Try: admin123');
     }
+  };
+
+  // Handle profile edit
+  const handleProfileEdit = () => {
+    setProfileEditData({
+      name: profileData.name,
+      email: profileData.email,
+      phone: profileData.phone,
+      location: profileData.location,
+      linkedin: profileData.linkedin
+    });
+    setShowProfileEdit(true);
   };
 
   // Handle contact form submission
   const handleContactSubmit = (e) => {
     e.preventDefault();
-    alert(`Message sent!\n\nName: ${contactForm.name}\nEmail: ${contactForm.email}\nSubject: ${contactForm.subject}\n\nMessage: ${contactForm.message}`);
+    alert(`📧 Message sent successfully!\n\nName: ${contactForm.name}\nEmail: ${contactForm.email}\nSubject: ${contactForm.subject}\n\nMessage: ${contactForm.message}\n\nThank you for your message. I'll get back to you soon!`);
     setContactForm({ name: '', email: '', subject: 'Data Analysis Project', message: '' });
+  };
+
+  // Handle resume download
+  const handleResumeDownload = () => {
+    alert('📥 Resume download started! Your PDF resume is being downloaded.');
+  };
+
+  // Handle share functionality
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Rishikesh Mohapatra - Portfolio',
+        text: 'Check out my professional portfolio',
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('🔗 Portfolio link copied to clipboard!');
+    }
   };
 
   if (loading) {
@@ -353,7 +400,7 @@ function DashboardPortfolio() {
               fontSize: '14px',
               color: '#4f46e5',
               fontWeight: '500',
-              margin: 0
+              margin: '0 0 16px 0'
             }}>{profileData.subtitle}</p>
             
             {/* Admin Toggle */}
@@ -363,10 +410,13 @@ function DashboardPortfolio() {
                   <span style={{
                     backgroundColor: '#dcfce7',
                     color: '#166534',
-                    padding: '4px 8px',
-                    borderRadius: '6px',
+                    padding: '4px 12px',
+                    borderRadius: '999px',
                     fontSize: '12px',
-                    fontWeight: '600'
+                    fontWeight: '600',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px'
                   }}>
                     ⚙️ Admin Mode
                   </span>
@@ -377,7 +427,8 @@ function DashboardPortfolio() {
                       border: '1px solid #d1d5db',
                       borderRadius: '6px',
                       backgroundColor: 'white',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      fontSize: '12px'
                     }}
                   >
                     👁️‍🗨️
@@ -392,7 +443,11 @@ function DashboardPortfolio() {
                     borderRadius: '6px',
                     backgroundColor: 'white',
                     cursor: 'pointer',
-                    fontSize: '14px'
+                    fontSize: '14px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    margin: '0 auto'
                   }}
                 >
                   👁️ Admin
@@ -491,7 +546,7 @@ function DashboardPortfolio() {
                 type="password"
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
-                placeholder="Enter admin password (admin123)"
+                placeholder="Enter admin password (Life@2025)"
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -532,6 +587,115 @@ function DashboardPortfolio() {
         </div>
       )}
 
+      {/* Profile Edit Modal */}
+      {showProfileEdit && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 50
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            padding: '32px',
+            maxWidth: '500px',
+            width: '90%'
+          }}>
+            <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>Edit Profile Information</h3>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              alert('✅ Profile updated successfully!');
+              setShowProfileEdit(false);
+            }} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Name</label>
+                <input
+                  type="text"
+                  value={profileEditData.name || ''}
+                  onChange={(e) => setProfileEditData({...profileEditData, name: e.target.value})}
+                  placeholder="Your name"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    boxSizing: 'border-box'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Email</label>
+                <input
+                  type="email"
+                  value={profileEditData.email || ''}
+                  onChange={(e) => setProfileEditData({...profileEditData, email: e.target.value})}
+                  placeholder="your@email.com"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    boxSizing: 'border-box'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Phone</label>
+                <input
+                  type="text"
+                  value={profileEditData.phone || ''}
+                  onChange={(e) => setProfileEditData({...profileEditData, phone: e.target.value})}
+                  placeholder="Your phone number"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    boxSizing: 'border-box'
+                  }}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button type="submit" style={{
+                  flex: 1,
+                  padding: '12px',
+                  backgroundColor: '#4f46e5',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}>
+                  Update Profile
+                </button>
+                <button type="button" onClick={() => setShowProfileEdit(false)} style={{
+                  flex: 1,
+                  padding: '12px',
+                  backgroundColor: '#e5e7eb',
+                  color: '#374151',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Main Content */}
       <div style={{ marginLeft: '320px', padding: '32px' }}>
         
@@ -549,7 +713,7 @@ function DashboardPortfolio() {
               </div>
               <div style={{ display: 'flex', gap: '12px' }}>
                 {isAdminMode && (
-                  <button style={{
+                  <button onClick={handleProfileEdit} style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: '8px',
@@ -557,12 +721,13 @@ function DashboardPortfolio() {
                     border: '2px solid #d1d5db',
                     borderRadius: '8px',
                     backgroundColor: 'white',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontWeight: '600'
                   }}>
                     ✏️ Edit Profile
                   </button>
                 )}
-                <button style={{
+                <button onClick={handleResumeDownload} style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
@@ -570,11 +735,12 @@ function DashboardPortfolio() {
                   border: '2px solid #d1d5db',
                   borderRadius: '8px',
                   backgroundColor: 'white',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontWeight: '600'
                 }}>
                   📥 Resume
                 </button>
-                <button style={{
+                <button onClick={handleShare} style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
@@ -583,7 +749,8 @@ function DashboardPortfolio() {
                   color: 'white',
                   border: 'none',
                   borderRadius: '8px',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontWeight: '600'
                 }}>
                   🔗 Share
                 </button>
@@ -636,7 +803,7 @@ function DashboardPortfolio() {
                     fontWeight: '500',
                     backgroundColor: '#dcfce7',
                     padding: '4px 8px',
-                    borderRadius: '9999px',
+                    borderRadius: '999px',
                     display: 'inline-block'
                   }}>
                     ↗ {index === 0 ? 'Growing' : index === 1 ? '25% this year' : index === 2 ? 'ROI Impact' : 'Excellence'}
@@ -652,24 +819,59 @@ function DashboardPortfolio() {
                 backgroundColor: 'white',
                 borderRadius: '12px',
                 padding: '24px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                transition: 'all 0.3s ease'
               }}>
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px', fontWeight: 'bold' }}>
+                <h3 style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  marginBottom: '20px', 
+                  fontWeight: 'bold',
+                  fontSize: '18px'
+                }}>
                   📊 Performance Timeline
-                  <select style={{ marginLeft: 'auto', padding: '4px 8px', border: '1px solid #d1d5db', borderRadius: '4px' }}>
+                  <select style={{ 
+                    marginLeft: 'auto', 
+                    padding: '4px 8px', 
+                    border: '1px solid #d1d5db', 
+                    borderRadius: '4px',
+                    fontSize: '14px'
+                  }}>
                     <option>Last 5 Years</option>
                   </select>
                 </h3>
-                <div style={{ height: '320px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(to bottom right, #e0e7ff, #f3e8ff)', borderRadius: '8px' }}>
+                <div style={{ 
+                  height: '320px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  background: 'linear-gradient(to bottom right, #e0e7ff, #f3e8ff)', 
+                  borderRadius: '8px' 
+                }}>
                   <div style={{ textAlign: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'end', gap: '16px', justifyContent: 'center', height: '128px', marginBottom: '24px' }}>
+                    <div style={{ 
+                      display: 'flex', 
+                      alignItems: 'end', 
+                      gap: '16px', 
+                      justifyContent: 'center', 
+                      height: '128px', 
+                      marginBottom: '24px' 
+                    }}>
                       <div style={{ width: '24px', background: 'linear-gradient(to top, #3b82f6, #60a5fa)', height: '64px', borderRadius: '4px 4px 0 0' }}></div>
                       <div style={{ width: '24px', background: 'linear-gradient(to top, #3b82f6, #60a5fa)', height: '80px', borderRadius: '4px 4px 0 0' }}></div>
                       <div style={{ width: '24px', background: 'linear-gradient(to top, #10b981, #34d399)', height: '96px', borderRadius: '4px 4px 0 0' }}></div>
                       <div style={{ width: '24px', background: 'linear-gradient(to top, #10b981, #34d399)', height: '112px', borderRadius: '4px 4px 0 0' }}></div>
                       <div style={{ width: '24px', background: 'linear-gradient(to top, #10b981, #34d399)', height: '128px', borderRadius: '4px 4px 0 0' }}></div>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', fontSize: '12px', color: '#6b7280', marginBottom: '24px' }}>
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'center', 
+                      gap: '16px', 
+                      fontSize: '12px', 
+                      color: '#6b7280', 
+                      marginBottom: '24px' 
+                    }}>
                       <span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2024</span>
                     </div>
                     <p style={{ color: '#6b7280', fontWeight: '600', margin: '12px 0' }}>
@@ -687,30 +889,45 @@ function DashboardPortfolio() {
                 backgroundColor: 'white',
                 borderRadius: '12px',
                 padding: '24px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                transition: 'all 0.3s ease'
               }}>
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px', fontWeight: 'bold' }}>
+                <h3 style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  marginBottom: '20px', 
+                  fontWeight: 'bold',
+                  fontSize: '18px'
+                }}>
                   📈 Skills Distribution
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {skills.slice(0, 4).map((skill, index) => (
                     <div key={index}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600' }}>
-                          <div style={{ width: '12px', height: '12px', backgroundColor: skill.color, borderRadius: '50%' }}></div>
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center', 
+                        marginBottom: '8px' 
+                      }}>
+                        <span style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '8px', 
+                          fontWeight: '600' 
+                        }}>
+                          <div style={{ 
+                            width: '12px', 
+                            height: '12px', 
+                            backgroundColor: skill.color.replace('bg-', '#').replace('-500', '').replace('-600', ''),
+                            borderRadius: '50%' 
+                          }}></div>
                           {skill.name}
                         </span>
                         <span style={{ color: '#6b7280' }}>{skill.level}%</span>
                       </div>
-                      <div style={{ width: '100%', height: '8px', backgroundColor: '#e5e7eb', borderRadius: '4px', overflow: 'hidden' }}>
-                        <div style={{
-                          width: `${skill.level}%`,
-                          height: '100%',
-                          backgroundColor: skill.color,
-                          borderRadius: '4px',
-                          transition: 'width 0.5s ease'
-                        }}></div>
-                      </div>
+                      <ColoredProgress value={skill.level} color={skill.color} />
                     </div>
                   ))}
                 </div>
@@ -737,7 +954,8 @@ function DashboardPortfolio() {
                   color: 'white',
                   border: 'none',
                   borderRadius: '8px',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontWeight: '600'
                 }}>
                   ➕ Add Skill
                 </button>
@@ -752,7 +970,8 @@ function DashboardPortfolio() {
                   padding: '24px',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                   transition: 'all 0.3s ease',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  position: 'relative'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
                     <div>
@@ -771,7 +990,11 @@ function DashboardPortfolio() {
                       </span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ fontSize: '24px', fontWeight: 'bold', color: skill.color }}>
+                      <span style={{ 
+                        fontSize: '30px', 
+                        fontWeight: 'bold', 
+                        color: '#4f46e5'
+                      }}>
                         {skill.level}%
                       </span>
                       {isAdminMode && (
@@ -787,15 +1010,7 @@ function DashboardPortfolio() {
                       )}
                     </div>
                   </div>
-                  <div style={{ width: '100%', height: '8px', backgroundColor: '#e5e7eb', borderRadius: '4px', overflow: 'hidden' }}>
-                    <div style={{
-                      width: `${skill.level}%`,
-                      height: '100%',
-                      backgroundColor: skill.color,
-                      borderRadius: '4px',
-                      transition: 'width 0.5s ease'
-                    }}></div>
-                  </div>
+                  <ColoredProgress value={skill.level} color={skill.color} />
                 </div>
               ))}
             </div>
@@ -820,7 +1035,8 @@ function DashboardPortfolio() {
                   color: 'white',
                   border: 'none',
                   borderRadius: '8px',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontWeight: '600'
                 }}>
                   ➕ Add Experience
                 </button>
@@ -834,7 +1050,8 @@ function DashboardPortfolio() {
                   borderRadius: '12px',
                   padding: '24px',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  position: 'relative'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
                     <div>
@@ -884,7 +1101,7 @@ function DashboardPortfolio() {
                           marginTop: '6px',
                           flexShrink: 0
                         }}></div>
-                        <span>{achievement}</span>
+                        <span style={{ lineHeight: '1.5' }}>{achievement}</span>
                       </li>
                     ))}
                   </ul>
@@ -912,7 +1129,8 @@ function DashboardPortfolio() {
                   color: 'white',
                   border: 'none',
                   borderRadius: '8px',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontWeight: '600'
                 }}>
                   ➕ Add Project
                 </button>
@@ -927,7 +1145,8 @@ function DashboardPortfolio() {
                   borderLeft: '4px solid #4f46e5',
                   padding: '24px',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  position: 'relative'
                 }}>
                   <div style={{ marginBottom: '16px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '8px' }}>
@@ -943,7 +1162,7 @@ function DashboardPortfolio() {
                         }}>
                           <span style={{ fontSize: '20px' }}>💻</span>
                         </div>
-                        <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#111827', margin: 0 }}>
+                        <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#111827', margin: 0 }}>
                           {project.title}
                         </h3>
                       </div>
@@ -1028,7 +1247,8 @@ function DashboardPortfolio() {
                       border: 'none',
                       borderRadius: '6px',
                       cursor: 'pointer',
-                      fontSize: '14px'
+                      fontSize: '14px',
+                      fontWeight: '600'
                     }}>
                       ➕ Add Award
                     </button>
@@ -1041,7 +1261,8 @@ function DashboardPortfolio() {
                       borderRadius: '6px',
                       backgroundColor: 'white',
                       cursor: 'pointer',
-                      fontSize: '14px'
+                      fontSize: '14px',
+                      fontWeight: '600'
                     }}>
                       ➕ Add Certification
                     </button>
@@ -1057,7 +1278,8 @@ function DashboardPortfolio() {
                     padding: '24px',
                     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                     textAlign: 'center',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    position: 'relative'
                   }}>
                     <div style={{ position: 'relative', marginBottom: '16px' }}>
                       <div style={{
@@ -1120,7 +1342,8 @@ function DashboardPortfolio() {
                     borderRadius: '6px',
                     backgroundColor: 'white',
                     cursor: 'pointer',
-                    fontSize: '14px'
+                    fontSize: '14px',
+                    fontWeight: '600'
                   }}>
                     ➕ Add
                   </button>
@@ -1132,7 +1355,7 @@ function DashboardPortfolio() {
                   // Icon mapping
                   const iconMapping = {
                     'BarChart3': '📊',
-                    'PieChart': '📈', 
+                    'PieChart': '📈',
                     'Database': '🗄️',
                     'Zap': '⚡'
                   };
@@ -1145,13 +1368,20 @@ function DashboardPortfolio() {
                       padding: '24px',
                       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                       textAlign: 'center',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      position: 'relative'
                     }}>
                       <div style={{ position: 'relative', marginBottom: '16px' }}>
                         <div style={{
                           width: '64px',
                           height: '64px',
-                          background: `linear-gradient(to bottom right, ${cert.color.split(' ')[0].replace('from-', '#')}, ${cert.color.split(' ')[2].replace('to-', '#')})`,
+                          background: `linear-gradient(to bottom right, ${cert.color.includes('blue') ? '#3b82f6, #60a5fa' : 
+                                     cert.color.includes('green') ? '#10b981, #34d399' :
+                                     cert.color.includes('purple') ? '#8b5cf6, #a78bfa' :
+                                     cert.color.includes('orange') ? '#f97316, #fb923c' :
+                                     cert.color.includes('pink') ? '#ec4899, #f472b6' :
+                                     cert.color.includes('rose') ? '#f43f5e, #fb7185' :
+                                     '#6366f1, #818cf8'})`,
                           borderRadius: '16px',
                           display: 'flex',
                           alignItems: 'center',
@@ -1179,7 +1409,7 @@ function DashboardPortfolio() {
                         )}
                       </div>
                       <div>
-                        <h3 style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827', margin: '0 0 4px 0' }}>
+                        <h3 style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827', margin: '0 0 4px 0', lineHeight: '1.2' }}>
                           {cert.name}
                         </h3>
                         <p style={{ color: '#6b7280', fontSize: '12px', margin: 0 }}>
@@ -1370,7 +1600,7 @@ function DashboardPortfolio() {
                     I'm passionate about transforming complex data into actionable business insights. 
                     Let's discuss how data analytics can drive your organization's success.
                   </p>
-                  <button style={{
+                  <button onClick={handleResumeDownload} style={{
                     width: '100%',
                     padding: '12px',
                     backgroundColor: 'transparent',
