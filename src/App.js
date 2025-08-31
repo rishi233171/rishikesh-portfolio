@@ -244,7 +244,7 @@ function DashboardPortfolio() {
       id: 5,
       name: "Generative AI Mastermind",
       issuer: "Outskill",
-      year: "2024",
+      year: "2025",
       icon: "Zap",
       color: "from-pink-400 to-pink-600"
     },
@@ -252,7 +252,7 @@ function DashboardPortfolio() {
       id: 6,
       name: "Agentic AI Fundamentals: Architectures, Frameworks, and Applications",
       issuer: "LinkedIn Learning",
-      year: "2024",
+      year: "2025",
       icon: "BarChart3",
       color: "from-rose-400 to-rose-600"
     }
