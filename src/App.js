@@ -128,27 +128,48 @@ function DashboardPortfolio() {
   // EXACT PROJECTS from original
   const projects = [
     {
-      id: 1,
-      title: "Supply Chain Optimization Dashboard",
-      description: "Comprehensive Power BI dashboard for real-time supply chain visibility and performance tracking.",
-      impact: "Reduced procurement costs by 15% and improved supplier performance visibility by 50%",
-      technology: ["Power BI", "SQL", "DAX", "Power Query"]
-    },
-    {
-      id: 3,
-      title: "Vendor Performance Analytics",
-      description: "Data-driven vendor evaluation system with predictive scoring and risk assessment.",
-      impact: "Improved vendor selection process and reduced procurement risks by 25%",
-      technology: ["SQL", "Python", "Tableau", "Statistical Analysis"]
-    },
-    {
-      id: 4,
-      title: "Cost Savings Tracking Platform",
-      description: "Integrated platform for tracking and validating cost savings across all business units.",
-      impact: "Validated $5M+ in cost savings and improved reporting accuracy to 99.9%",
-      technology: ["Power BI", "Excel VBA", "SQL Server", "SharePoint"]
-    },
-  ];
+    id: 1,
+    title: "Process Automation Excellence",
+    description: "Automated Monthly SRM Pack in Power BI across 15+ countries.",
+    impact: "Eliminated 240+ manual hours annually, improved data accuracy by 95%, and reduced report generation time from 3 days to 2 hours.",
+    technology: ["Power BI", "DAX", "Power Query", "Excel"]
+   },
+   {
+    id: 2,
+    title: "Data-Driven Process Improvement",
+    description: "Created Advanced Allocation & TDS Macros for daily operations and monthly reconciliations.",
+    impact: "Reduced processing time by 75% (from 8 hours to 2 hours daily) and eliminated 95% of manual errors.",
+    technology: ["Excel VBA", "Macros", "Automation"]
+   },
+   {
+    id: 3,
+    title: "Dashboard Development",
+    description: "Developed Automated Production Dashboards in Power BI for team performance monitoring.",
+    impact: "Increased operational visibility by 90%, reduced manual reporting by 18 hours weekly, and enabled real-time tracking for 200+ global  stakeholders.",
+    technology: ["Power BI", "SQL", "DAX", "Power Query"]
+   },
+   {
+    id: 4,
+    title: "Large-Scale Data Migration",
+    description: "Led AP Process Transformation from country-based to centralized model.",
+    impact: "Achieved 40% efficiency improvement and standardized operations across 11 countries with 99.5% accuracy rate.",
+    technology: ["SQL", "ETL", "Process Reengineering"]
+   },
+   {
+    id: 5,
+    title: "Cost Optimization",
+    description: "Implemented USD Pay Cycle Optimization for payment processing efficiency.",
+    impact: "Reduced daily workload by 2 FTE (saving $25K annually), decreased payment processing time by 50%, and improved vendor satisfaction scores by 30%.",
+    technology: ["Process Automation", "Excel", "Payment Systems"]
+   },
+   {
+    id: 6,
+    title: "Business Continuity Analytics",
+    description: "Directed Business Continuity Planning for 8-country operations with 35+ team members.",
+    impact: "Maintained 99.9% uptime, processed $500M+ transactions, achieved zero SLA breaches, and reduced operational risks by 80%.",
+    technology: ["BCP Tools", "Risk Analytics", "Process Governance"]
+   }
+   ];
 
   // EXACT AWARDS from original
   const awards = [
