@@ -7,42 +7,77 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { Label } from './ui/label';
 import { useToast } from '../hooks/use-toast';
-import { 
-  User, 
-  BarChart3, 
-  TrendingUp, 
-  Award, 
-  Briefcase, 
-  Code, 
-  Mail, 
-  Phone, 
-  MapPin,
-  Calendar,
-  Target,
-  Zap,
-  Database,
-  PieChart,
-  Users,
-  Globe,
-  DollarSign,
-  Activity,
-  Download,
-  Share,
-  Settings,
-  Plus,
-  Edit,
-  Eye,
-  EyeOff,
-  Send,
-  Linkedin,
-  Loader2
-} from 'lucide-react';
 
-// Import mock data instead of API services
-import { mockProfileData, mockSkills, mockExperiences, mockProjects, mockAwards, mockCertifications } from '../mock/portfolioData';
+// Mock data (simplified version)
+const mockProfileData = {
+  name: "Rishikesh Mohapatra",
+  subtitle: "Lead Supply Chain Data Analyst | Supply Chain Analytics Expert",
+  experience: "15+",
+  projects_completed: "500+",
+  cost_savings: "$5M+",
+  accuracy_rate: "99.9%",
+  location: "Bhubaneswar, Odisha",
+  email: "rish233171@gmail.com",
+  phone: "+91-7483532369",
+  linkedin: "linkedin.com/in/rishikesh-mohapatra"
+};
+
+const mockSkills = [
+  { id: 1, name: "Power BI", level: 95, category: "Data Visualization", color: "bg-indigo-500" },
+  { id: 2, name: "SQL", level: 90, category: "Programming", color: "bg-purple-500" },
+  { id: 3, name: "Python", level: 85, category: "Programming", color: "bg-cyan-500" },
+  { id: 4, name: "Tableau", level: 92, category: "Data Visualization", color: "bg-emerald-500" },
+  { id: 5, name: "Excel/VBA", level: 98, category: "Analysis", color: "bg-blue-600" },
+  { id: 6, name: "SAP", level: 88, category: "ERP Systems", color: "bg-orange-500" },
+  { id: 7, name: "Data Analysis", level: 96, category: "Analysis", color: "bg-green-600" },
+  { id: 8, name: "Process Automation", level: 93, category: "Automation", color: "bg-red-500" },
+];
+
+const mockExperiences = [
+  {
+    id: 1,
+    title: "Lead Supply Chain Data Analyst",
+    company: "SGB Brandsafway Pvt Ltd",
+    period: "July 2023 – Present",
+    achievements: [
+      "Conduct comprehensive PO/AP spend analysis and compliance tracking across multiple vendors and regions",
+      "Developed Power BI dashboards for savings tracking and travel expense reporting, improving visibility by 40%",
+      "Analyze vendor performance metrics and implement data-driven vendor management strategies",
+      "Developed low-code apps using Power Apps for internal use cases including attendance tracking and QC audit processes"
+    ]
+  },
+  {
+    id: 2,
+    title: "Senior Data Analyst",
+    company: "Larsen & Toubro Infotech",
+    period: "June 2021 – June 2023",
+    achievements: [
+      "Led end-to-end data analysis projects for Fortune 500 clients using SQL, Python, and Power BI",
+      "Automated reporting processes reducing manual effort by 60% and improving accuracy by 25%",
+      "Developed predictive models for demand forecasting achieving 92% accuracy rate"
+    ]
+  }
+];
+
+const mockProjects = [
+  {
+    id: 1,
+    title: "Supply Chain Optimization Dashboard",
+    description: "Comprehensive Power BI dashboard for real-time supply chain visibility and performance tracking.",
+    impact: "Reduced procurement costs by 15% and improved supplier performance visibility by 50%",
+    technology: ["Power BI", "SQL", "DAX", "Power Query"]
+  },
+  {
+    id: 2,
+    title: "Automated Financial Reporting System", 
+    description: "End-to-end automation of monthly financial reports using Python and Power Apps.",
+    impact: "Eliminated 40+ hours of manual work monthly and improved accuracy by 98%",
+    technology: ["Python", "Power Apps", "SharePoint", "Power Automate"]
+  }
+];
 
 const DashboardPortfolio = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -58,10 +93,6 @@ const DashboardPortfolio = () => {
   const [skills, setSkills] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [awards, setAwards] = useState([]);
-  const [certifications, setCertifications] = useState([]);
-  const [showProfileEdit, setShowProfileEdit] = useState(false);
-  const [profileEditData, setProfileEditData] = useState({});
 
   // Contact form state
   const [contactForm, setContactForm] = useState({
@@ -76,17 +107,14 @@ const DashboardPortfolio = () => {
     loadAllData();
   }, []);
 
-  // UPDATED: Use mock data instead of API calls
   const loadAllData = async () => {
     setLoading(true);
     try {
-      // Use mock data instead of API calls
+      // Use mock data
       setProfileData(mockProfileData);
       setSkills(mockSkills);
       setExperiences(mockExperiences);
       setProjects(mockProjects);
-      setAwards(mockAwards);
-      setCertifications(mockCertifications);
 
       toast({
         title: "Portfolio Loaded",
@@ -104,11 +132,10 @@ const DashboardPortfolio = () => {
     }
   };
 
-  // Admin login function (simplified for mock data)
+  // Admin login function
   const handleAdminLogin = async () => {
     try {
       setUpdating(true);
-      // Simple password check for demo
       if (adminPassword === 'admin123') {
         setIsAdminMode(true);
         setShowAdminLogin(false);
@@ -134,38 +161,11 @@ const DashboardPortfolio = () => {
     }
   };
 
-  // Handle resume download
-  const handleResumeDownload = () => {
-    toast({
-      title: "Download Started",
-      description: "Resume PDF is being downloaded",
-    });
-    // In real implementation, this would download the actual PDF
-  };
-
-  // Handle share functionality
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'Rishikesh Mohapatra - Portfolio',
-        text: 'Check out my professional portfolio',
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      toast({
-        title: "Link Copied",
-        description: "Portfolio link copied to clipboard",
-      });
-    }
-  };
-
   // Handle contact form submission
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     try {
       setUpdating(true);
-      // Mock contact form submission
       toast({
         title: "Message Sent",
         description: "Thank you for your message. I'll get back to you soon!",
@@ -182,65 +182,12 @@ const DashboardPortfolio = () => {
     }
   };
 
-  // Handle profile edit
-  const handleProfileEdit = () => {
-    setProfileEditData({
-      name: profileData.name,
-      email: profileData.email,
-      phone: profileData.phone,
-      location: profileData.location,
-      linkedin: profileData.linkedin
-    });
-    setShowProfileEdit(true);
-  };
-
-  const handleProfileUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      setUpdating(true);
-      // Mock profile update
-      const updatedProfile = { ...profileData, ...profileEditData };
-      setProfileData(updatedProfile);
-      setShowProfileEdit(false);
-      toast({
-        title: "Profile Updated",
-        description: "Your profile information has been updated successfully",
-      });
-    } catch (error) {
-      toast({
-        title: "Update Failed",
-        description: "Failed to update profile. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setUpdating(false);
-    }
-  };
-
-  // Custom Progress Component with Colors
-  const ColoredProgress = ({ value, className, color }) => {
-    // Define color mapping for consistent styling
-    const colorStyles = {
-      'bg-indigo-500': 'bg-indigo-500',
-      'bg-purple-500': 'bg-purple-500', 
-      'bg-cyan-500': 'bg-cyan-500',
-      'bg-emerald-500': 'bg-emerald-500',
-      'bg-blue-600': 'bg-blue-600',
-      'bg-orange-500': 'bg-orange-500',
-      'bg-green-600': 'bg-green-600',
-      'bg-red-500': 'bg-red-500',
-      'bg-yellow-500': 'bg-yellow-500',
-      'bg-pink-500': 'bg-pink-500',
-      'bg-teal-500': 'bg-teal-500',
-      'bg-violet-500': 'bg-violet-500'
-    };
-    
-    const progressColor = colorStyles[color] || 'bg-indigo-500';
-    
+  // Custom Progress Component
+  const ColoredProgress = ({ value, color }) => {
     return (
-      <div className={`relative w-full bg-gray-200 rounded-full h-3 ${className}`}>
+      <div className="relative w-full bg-gray-200 rounded-full h-3">
         <div 
-          className={`${progressColor} h-full rounded-full transition-all duration-500 ease-out`}
+          className={`${color} h-full rounded-full transition-all duration-500 ease-out`}
           style={{ width: `${value}%` }}
         />
       </div>
@@ -252,7 +199,7 @@ const DashboardPortfolio = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-indigo-600 mx-auto mb-4" />
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading portfolio data...</p>
         </div>
       </div>
@@ -279,7 +226,7 @@ const DashboardPortfolio = () => {
           {/* Profile Section */}
           <div className="text-center mb-8">
             <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl mx-auto mb-4 flex items-center justify-center shadow-lg">
-              <User className="w-12 h-12 text-white" />
+              <span className="text-white text-2xl font-bold">👤</span>
             </div>
             <h2 className="text-xl font-bold text-gray-900 mb-1">{profileData.name}</h2>
             <p className="text-sm text-indigo-600 font-medium mb-2">{profileData.subtitle}</p>
@@ -289,15 +236,14 @@ const DashboardPortfolio = () => {
               {isAdminMode ? (
                 <div className="flex items-center gap-2 justify-center">
                   <Badge variant="secondary" className="bg-green-100 text-green-700">
-                    <Settings className="w-3 h-3 mr-1" />
-                    Admin Mode
+                    ⚙️ Admin Mode
                   </Badge>
                   <Button 
                     size="sm" 
                     variant="outline" 
                     onClick={() => setIsAdminMode(false)}
                   >
-                    <EyeOff className="w-3 h-3" />
+                    👁️‍🗨️
                   </Button>
                 </div>
               ) : (
@@ -306,8 +252,7 @@ const DashboardPortfolio = () => {
                   variant="outline" 
                   onClick={() => setShowAdminLogin(true)}
                 >
-                  <Eye className="w-3 h-3 mr-1" />
-                  Admin
+                  👁️ Admin
                 </Button>
               )}
             </div>
@@ -316,29 +261,25 @@ const DashboardPortfolio = () => {
           {/* Navigation */}
           <nav className="space-y-2">
             {[
-              { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-              { id: 'skills', label: 'Skills Analytics', icon: PieChart },
-              { id: 'experience', label: 'Experience', icon: Briefcase },
-              { id: 'projects', label: 'Projects', icon: Code },
-              { id: 'achievements', label: 'Achievements', icon: Award },
-              { id: 'contact', label: 'Contact', icon: Mail }
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-xl transition-all duration-200 ${
-                    activeTab === item.id 
-                      ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg transform scale-105' 
-                      : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-700'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="font-medium">{item.label}</span>
-                </button>
-              );
-            })}
+              { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+              { id: 'skills', label: 'Skills Analytics', icon: '📈' },
+              { id: 'experience', label: 'Experience', icon: '💼' },
+              { id: 'projects', label: 'Projects', icon: '💻' },
+              { id: 'contact', label: 'Contact', icon: '📧' }
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-xl transition-all duration-200 ${
+                  activeTab === item.id 
+                    ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg transform scale-105' 
+                    : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-700'
+                }`}
+              >
+                <span className="text-lg">{item.icon}</span>
+                <span className="font-medium">{item.label}</span>
+              </button>
+            ))}
           </nav>
         </div>
 
@@ -346,82 +287,18 @@ const DashboardPortfolio = () => {
         <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
           <div className="space-y-3 text-sm">
             <div className="flex items-center gap-3">
-              <Phone className="w-4 h-4" />
+              <span>📞</span>
               <span>{profileData.phone}</span>
             </div>
             <div className="flex items-center gap-3">
-              <Mail className="w-4 h-4" />
+              <span>📧</span>
               <span className="truncate">{profileData.email}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Profile Edit Dialog */}
-      <Dialog open={showProfileEdit} onOpenChange={setShowProfileEdit}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>Edit Profile Information</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleProfileUpdate} className="space-y-4">
-            <div>
-              <Label htmlFor="editName">Name</Label>
-              <Input
-                id="editName"
-                value={profileEditData.name || ''}
-                onChange={(e) => setProfileEditData({...profileEditData, name: e.target.value})}
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editEmail">Email</Label>
-              <Input
-                id="editEmail"
-                type="email"
-                value={profileEditData.email || ''}
-                onChange={(e) => setProfileEditData({...profileEditData, email: e.target.value})}
-                placeholder="your@email.com"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editPhone">Phone</Label>
-              <Input
-                id="editPhone"
-                value={profileEditData.phone || ''}
-                onChange={(e) => setProfileEditData({...profileEditData, phone: e.target.value})}
-                placeholder="Your phone number"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editLocation">Location</Label>
-              <Input
-                id="editLocation"
-                value={profileEditData.location || ''}
-                onChange={(e) => setProfileEditData({...profileEditData, location: e.target.value})}
-                placeholder="Your location"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editLinkedin">LinkedIn</Label>
-              <Input
-                id="editLinkedin"
-                value={profileEditData.linkedin || ''}
-                onChange={(e) => setProfileEditData({...profileEditData, linkedin: e.target.value})}
-                placeholder="LinkedIn profile URL"
-              />
-            </div>
-            <div className="flex gap-2">
-              <Button type="submit" className="flex-1" disabled={updating}>
-                {updating && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                Update Profile
-              </Button>
-              <Button type="button" variant="outline" onClick={() => setShowProfileEdit(false)}>
-                Cancel
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
+      {/* Admin Login Dialog */}
       <Dialog open={showAdminLogin} onOpenChange={setShowAdminLogin}>
         <DialogContent>
           <DialogHeader>
@@ -439,8 +316,7 @@ const DashboardPortfolio = () => {
               />
             </div>
             <Button onClick={handleAdminLogin} className="w-full" disabled={updating}>
-              {updating && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-              Login as Admin
+              {updating && "⏳ "} Login as Admin
             </Button>
           </div>
         </DialogContent>
@@ -457,42 +333,22 @@ const DashboardPortfolio = () => {
                 <p className="text-gray-600 text-lg">Professional performance metrics and insights</p>
               </div>
               <div className="flex gap-3">
-                {isAdminMode && (
-                  <Button 
-                    variant="outline"
-                    className="flex items-center gap-2 border-2 hover:bg-gray-50"
-                    onClick={handleProfileEdit}
-                  >
-                    <Edit className="w-4 h-4" />
-                    Edit Profile
-                  </Button>
-                )}
-                <Button 
-                  variant="outline" 
-                  className="flex items-center gap-2 border-2 hover:bg-gray-50"
-                  onClick={handleResumeDownload}
-                >
-                  <Download className="w-4 h-4" />
-                  Resume
+                <Button variant="outline" className="flex items-center gap-2 border-2 hover:bg-gray-50">
+                  📥 Resume
                 </Button>
-                <Button 
-                  className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 shadow-lg"
-                  onClick={handleShare}
-                >
-                  <Share className="w-4 h-4" />
-                  Share
+                <Button className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 shadow-lg">
+                  🔗 Share
                 </Button>
               </div>
             </div>
 
             {/* Key Metrics Cards */}
             <div className="grid grid-cols-4 gap-6">
-              {/* Purple Card - Experience */}
               <Card className="border-t-4 border-indigo-500 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                      <User className="w-7 h-7 text-white" />
+                      <span className="text-white text-xl">👤</span>
                     </div>
                   </div>
                   <div className="text-4xl font-bold text-gray-900 mb-2">{profileData.experience}</div>
@@ -501,12 +357,11 @@ const DashboardPortfolio = () => {
                 </CardContent>
               </Card>
 
-              {/* Cyan Card - Projects */}
               <Card className="border-t-4 border-cyan-400 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
-                      <Target className="w-7 h-7 text-white" />
+                      <span className="text-white text-xl">🎯</span>
                     </div>
                   </div>
                   <div className="text-4xl font-bold text-gray-900 mb-2">{profileData.projects_completed}</div>
@@ -515,12 +370,11 @@ const DashboardPortfolio = () => {
                 </CardContent>
               </Card>
 
-              {/* Green Card - Cost Savings */}
               <Card className="border-t-4 border-emerald-400 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                      <DollarSign className="w-7 h-7 text-white" />
+                      <span className="text-white text-xl">💰</span>
                     </div>
                   </div>
                   <div className="text-4xl font-bold text-gray-900 mb-2">{profileData.cost_savings}</div>
@@ -529,12 +383,11 @@ const DashboardPortfolio = () => {
                 </CardContent>
               </Card>
 
-              {/* Orange/Coral Card - Accuracy */}
               <Card className="border-t-4 border-orange-400 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl flex items-center justify-center shadow-lg">
-                      <Activity className="w-7 h-7 text-white" />
+                      <span className="text-white text-xl">📊</span>
                     </div>
                   </div>
                   <div className="text-4xl font-bold text-gray-900 mb-2">{profileData.accuracy_rate}</div>
@@ -544,64 +397,30 @@ const DashboardPortfolio = () => {
               </Card>
             </div>
 
-            {/* Performance Timeline & Skills Distribution */}
-            <div className="grid grid-cols-2 gap-6">
-              <Card className="hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <BarChart3 className="w-5 h-5" />
-                    Performance Timeline
-                    <select className="ml-auto text-sm border rounded px-2 py-1">
-                      <option>Last 5 Years</option>
-                    </select>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="h-80 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg">
-                  <div className="text-center">
-                    <div className="relative mb-6">
-                      {/* Mock Chart Lines */}
-                      <div className="flex items-end gap-4 justify-center h-32">
-                        <div className="w-6 bg-gradient-to-t from-blue-400 to-blue-200 h-16 rounded-t"></div>
-                        <div className="w-6 bg-gradient-to-t from-blue-400 to-blue-200 h-20 rounded-t"></div>
-                        <div className="w-6 bg-gradient-to-t from-green-400 to-green-200 h-24 rounded-t"></div>
-                        <div className="w-6 bg-gradient-to-t from-green-400 to-green-200 h-28 rounded-t"></div>
-                        <div className="w-6 bg-gradient-to-t from-green-400 to-green-200 h-32 rounded-t"></div>
+            {/* Skills Distribution */}
+            <Card className="hover:shadow-xl transition-shadow duration-300">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  📈 Skills Distribution
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {skills.slice(0, 4).map((skill) => (
+                    <div key={skill.id}>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="font-medium flex items-center gap-2">
+                          <div className={`w-3 h-3 rounded-full ${skill.color}`}></div>
+                          {skill.name}
+                        </span>
+                        <span className="text-gray-500">{skill.level}%</span>
                       </div>
-                      <div className="flex justify-center gap-4 text-xs text-gray-500 mt-2">
-                        <span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2024</span>
-                      </div>
+                      <ColoredProgress value={skill.level} color={skill.color} />
                     </div>
-                    <p className="text-gray-600 font-medium">Consistent growth in automation efficiency</p>
-                    <p className="text-sm text-gray-500 mt-2">240+ hours saved annually through process optimization</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <PieChart className="w-5 h-5" />
-                    Skills Distribution
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {skills.slice(0, 4).map((skill, index) => (
-                      <div key={skill.id}>
-                        <div className="flex justify-between text-sm mb-2">
-                          <span className="font-medium flex items-center gap-2">
-                            <div className={`w-3 h-3 rounded-full ${skill.color}`}></div>
-                            {skill.name}
-                          </span>
-                          <span className="text-gray-500">{skill.level}%</span>
-                        </div>
-                        <ColoredProgress value={skill.level} color={skill.color} />
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* Skills Tab */}
@@ -611,16 +430,10 @@ const DashboardPortfolio = () => {
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">Skills Analytics</h1>
                 <p className="text-gray-600 text-lg">Technical expertise and proficiency levels</p>
               </div>
-              {isAdminMode && (
-                <Button className="flex items-center gap-2">
-                  <Plus className="w-4 h-4" />
-                  Add Skill
-                </Button>
-              )}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
+              {skills.map((skill) => (
                 <Card key={skill.id} className="hover:shadow-xl transition-all duration-300 hover:scale-105 relative">
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-4">
@@ -630,11 +443,6 @@ const DashboardPortfolio = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-3xl font-bold text-indigo-600">{skill.level}%</span>
-                        {isAdminMode && (
-                          <Button size="sm" variant="outline">
-                            <Edit className="w-3 h-3" />
-                          </Button>
-                        )}
                       </div>
                     </div>
                     <ColoredProgress value={skill.level} color={skill.color} />
@@ -651,12 +459,6 @@ const DashboardPortfolio = () => {
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">Professional Experience</h1>
                 <p className="text-gray-600 text-lg">15+ years career progression and key achievements</p>
               </div>
-              {isAdminMode && (
-                <Button className="flex items-center gap-2">
-                  <Plus className="w-4 h-4" />
-                  Add Experience
-                </Button>
-              )}
             </div>
 
             <div className="space-y-6">
@@ -668,14 +470,7 @@ const DashboardPortfolio = () => {
                         <CardTitle className="text-xl text-gray-900">{exp.title}</CardTitle>
                         <p className="text-indigo-600 font-medium mt-1">{exp.company}</p>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="text-sm px-3 py-1">{exp.period}</Badge>
-                        {isAdminMode && (
-                          <Button size="sm" variant="outline">
-                            <Edit className="w-3 h-3" />
-                          </Button>
-                        )}
-                      </div>
+                      <Badge variant="outline" className="text-sm px-3 py-1">{exp.period}</Badge>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -700,12 +495,6 @@ const DashboardPortfolio = () => {
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">Key Projects</h1>
                 <p className="text-gray-600 text-lg">Major initiatives and their business impact</p>
               </div>
-              {isAdminMode && (
-                <Button className="flex items-center gap-2">
-                  <Plus className="w-4 h-4" />
-                  Add Project
-                </Button>
-              )}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -716,23 +505,18 @@ const DashboardPortfolio = () => {
                       <div className="flex-1">
                         <CardTitle className="flex items-center gap-2 text-xl mb-2">
                           <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <Code className="w-5 h-5 text-white" />
+                            <span className="text-white">💻</span>
                           </div>
                           {project.title}
                         </CardTitle>
                         <p className="text-gray-600 text-sm">{project.description}</p>
                       </div>
-                      {isAdminMode && (
-                        <Button size="sm" variant="outline" className="ml-2">
-                          <Edit className="w-3 h-3" />
-                        </Button>
-                      )}
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
                     <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-400 rounded-lg p-4 mb-4">
                       <div className="flex items-center gap-2 mb-1">
-                        <TrendingUp className="w-4 h-4 text-green-600" />
+                        <span>📈</span>
                         <span className="font-medium text-green-800 text-sm">Impact & Results</span>
                       </div>
                       <p className="text-green-700 font-medium">{project.impact}</p>
@@ -750,100 +534,6 @@ const DashboardPortfolio = () => {
                   </CardContent>
                 </Card>
               ))}
-            </div>
-          </TabsContent>
-
-          {/* Achievements Tab */}
-          <TabsContent value="achievements" className="space-y-8 relative z-10">
-            {/* Awards & Recognition Section */}
-            <div>
-              <div className="flex justify-between items-center mb-6">
-                <div>
-                  <h1 className="text-4xl font-bold text-gray-900 mb-2">Awards & Recognition</h1>
-                </div>
-                {isAdminMode && (
-                  <div className="flex gap-2">
-                    <Button className="flex items-center gap-2" size="sm">
-                      <Plus className="w-4 h-4" />
-                      Add Award
-                    </Button>
-                    <Button className="flex items-center gap-2" size="sm" variant="outline">
-                      <Plus className="w-4 h-4" />
-                      Add Certification
-                    </Button>
-                  </div>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
-                {awards.map((award, index) => (
-                  <Card key={award.id} className="hover:shadow-xl transition-all duration-300 relative bg-gradient-to-br from-white to-gray-50">
-                    <CardContent className="p-6 text-center">
-                      <div className="relative mb-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                          <Award className="w-8 h-8 text-white" />
-                        </div>
-                        {isAdminMode && (
-                          <Button size="sm" variant="outline" className="absolute -top-1 -right-1 w-6 h-6 p-0">
-                            <Edit className="w-3 h-3" />
-                          </Button>
-                        )}
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 text-sm mb-1">{award.title}</h3>
-                        <p className="text-blue-600 font-medium text-xs mb-2">{award.year}</p>
-                        <p className="text-gray-600 text-xs leading-relaxed">{award.description}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Certifications Section */}
-            <div className="pb-20">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Certifications</h2>
-                {isAdminMode && (
-                  <Button className="flex items-center gap-2" size="sm" variant="outline">
-                    <Plus className="w-4 h-4" />
-                    Add
-                  </Button>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {certifications.map((cert, index) => {
-                  // Icon mapping
-                  const iconMapping = {
-                    'BarChart3': BarChart3,
-                    'PieChart': PieChart,
-                    'Database': Database,
-                    'Zap': Zap
-                  };
-                  const IconComponent = iconMapping[cert.icon] || BarChart3;
-                  
-                  return (
-                    <Card key={cert.id} className="hover:shadow-xl transition-all duration-300 relative bg-gradient-to-br from-white to-gray-50">
-                      <CardContent className="p-6 text-center">
-                        <div className="relative mb-4">
-                          <div className={`w-16 h-16 bg-gradient-to-br ${cert.color} rounded-2xl flex items-center justify-center mx-auto shadow-lg`}>
-                            <IconComponent className="w-8 h-8 text-white" />
-                          </div>
-                          {isAdminMode && (
-                            <Button size="sm" variant="outline" className="absolute -top-1 -right-1 w-6 h-6 p-0">
-                              <Edit className="w-3 h-3" />
-                            </Button>
-                          )}
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-900 text-sm">{cert.name}</h3>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
             </div>
           </TabsContent>
 
@@ -917,9 +607,7 @@ const DashboardPortfolio = () => {
                     </div>
 
                     <Button type="submit" className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 flex items-center gap-2" disabled={updating}>
-                      {updating && <Loader2 className="w-4 h-4 animate-spin" />}
-                      <Send className="w-4 h-4" />
-                      Send Message
+                      {updating && "⏳ "} 📤 Send Message
                     </Button>
                   </form>
                 </CardContent>
@@ -933,7 +621,7 @@ const DashboardPortfolio = () => {
                 <CardContent className="space-y-6">
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-blue-600" />
+                      <span className="text-2xl">📞</span>
                     </div>
                     <div>
                       <p className="font-semibold text-lg">Phone</p>
@@ -943,7 +631,7 @@ const DashboardPortfolio = () => {
 
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-blue-600" />
+                      <span className="text-2xl">📧</span>
                     </div>
                     <div>
                       <p className="font-semibold text-lg">Email</p>
@@ -953,7 +641,7 @@ const DashboardPortfolio = () => {
 
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-blue-600" />
+                      <span className="text-2xl">📍</span>
                     </div>
                     <div>
                       <p className="font-semibold text-lg">Location</p>
@@ -963,7 +651,7 @@ const DashboardPortfolio = () => {
 
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                      <Linkedin className="w-6 h-6 text-blue-600" />
+                      <span className="text-2xl">💼</span>
                     </div>
                     <div>
                       <p className="font-semibold text-lg">LinkedIn</p>
@@ -976,9 +664,8 @@ const DashboardPortfolio = () => {
                       I'm passionate about transforming complex data into actionable business insights. 
                       Let's discuss how data analytics can drive your organization's success.
                     </p>
-                    <Button variant="outline" className="w-full" onClick={handleResumeDownload}>
-                      <Download className="w-4 h-4 mr-2" />
-                      Download Resume
+                    <Button variant="outline" className="w-full">
+                      📥 Download Resume
                     </Button>
                   </div>
                 </CardContent>
