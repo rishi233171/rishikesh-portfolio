@@ -327,8 +327,7 @@ function DashboardPortfolio() {
     setShowProfileEdit(true);
   };
 
-  // Handle contact form submission
-  const handleContactSubmit = (e) => {
+  // Handle contact form submission 
 // ENHANCED: Real Email Sending with EmailJS
 const handleContactSubmit = async (e) => {
   e.preventDefault();
