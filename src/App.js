@@ -329,10 +329,53 @@ function DashboardPortfolio() {
 
   // Handle contact form submission
   const handleContactSubmit = (e) => {
-    e.preventDefault();
-    alert(`📧 Message sent successfully!\n\nName: ${contactForm.name}\nEmail: ${contactForm.email}\nSubject: ${contactForm.subject}\n\nMessage: ${contactForm.message}\n\nThank you for your message. I'll get back to you soon!`);
-    setContactForm({ name: '', email: '', subject: 'Data Analysis Project', message: '' });
-  };
+// ENHANCED: Real Email Sending with EmailJS
+const handleContactSubmit = async (e) => {
+  e.preventDefault();
+  
+  try {
+    // Initialize EmailJS (you'll need to get these IDs from emailjs.com)
+    const serviceID = 'your_service_id'; // Get from EmailJS
+    const templateID = 'your_template_id'; // Get from EmailJS  
+    const publicKey = 'your_public_key'; // Get from EmailJS
+    
+    const templateParams = {
+      from_name: contactForm.name,
+      from_email: contactForm.email,
+      subject: contactForm.subject,
+      message: contactForm.message,
+      to_email: 'rish233171@gmail.com'
+    };
+    
+    // Send email using EmailJS
+    const response = await emailjs.send(serviceID, templateID, templateParams, publicKey);
+    
+    if (response.status === 200) {
+      alert('✅ Message sent successfully! I\'ll get back to you within 24 hours.');
+    } else {
+      throw new Error('Email sending failed');
+    }
+    
+  } catch (error) {
+    console.error('Email error:', error);
+    
+    // Fallback to mailto
+    const subject = encodeURIComponent(`Portfolio Contact: ${contactForm.subject}`);
+    const body = encodeURIComponent(`
+Name: ${contactForm.name}
+Email: ${contactForm.email}
+
+Message:
+${contactForm.message}
+    `);
+    
+    window.open(`mailto:rish233171@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    alert('📧 Opening your email client to send the message...');
+  }
+  
+  // Clear form
+  setContactForm({ name: '', email: '', subject: 'Data Analysis Project', message: '' });
+};
 
   // Handle resume download
   const handleResumeDownload = () => {
@@ -567,7 +610,7 @@ function DashboardPortfolio() {
                 type="password"
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
-                placeholder="Enter admin password"
+                placeholder="Enter admin password)"
                 style={{
                   width: '100%',
                   padding: '12px',
