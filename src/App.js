@@ -343,7 +343,7 @@ const handleContactSubmit = async (e) => {
       from_email: contactForm.email,
       subject: contactForm.subject,
       message: contactForm.message,
-      to_email: 'rish233171@gmail.com'
+      to_email: 'rishi233171@gmail.com'
     };
     
     // Send email using EmailJS
@@ -368,7 +368,7 @@ Message:
 ${contactForm.message}
     `);
     
-    window.open(`mailto:rish233171@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    window.open(`mailto:rishi233171@gmail.com?subject=${subject}&body=${body}`, '_blank');
     alert('📧 Opening your email client to send the message...');
   }
   
