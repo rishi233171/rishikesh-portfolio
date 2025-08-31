@@ -567,7 +567,7 @@ function DashboardPortfolio() {
                 type="password"
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
-                placeholder="Enter admin password (Life@2025)"
+                placeholder="Enter admin password"
                 style={{
                   width: '100%',
                   padding: '12px',
