@@ -41,17 +41,8 @@ import {
   Loader2
 } from 'lucide-react';
 
-// Import API services
-import { 
-  authAPI, 
-  profileAPI, 
-  skillsAPI, 
-  experienceAPI, 
-  projectsAPI, 
-  awardsAPI, 
-  certificationsAPI, 
-  contactAPI 
-} from '../services/api';
+// Import mock data instead of API services
+import { mockProfileData, mockSkills, mockExperiences, mockProjects, mockAwards, mockCertifications } from '../mock/portfolioData';
 
 const DashboardPortfolio = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -85,28 +76,21 @@ const DashboardPortfolio = () => {
     loadAllData();
   }, []);
 
+  // UPDATED: Use mock data instead of API calls
   const loadAllData = async () => {
     setLoading(true);
     try {
-      const [profile, skillsData, experienceData, projectsData, awardsData, certificationsData] = await Promise.all([
-        profileAPI.getProfile(),
-        skillsAPI.getSkills(),
-        experienceAPI.getExperience(),
-        projectsAPI.getProjects(),
-        awardsAPI.getAwards(),
-        certificationsAPI.getCertifications()
-      ]);
-
-      setProfileData(profile);
-      setSkills(skillsData);
-      setExperiences(experienceData);
-      setProjects(projectsData);
-      setAwards(awardsData);
-      setCertifications(certificationsData);
+      // Use mock data instead of API calls
+      setProfileData(mockProfileData);
+      setSkills(mockSkills);
+      setExperiences(mockExperiences);
+      setProjects(mockProjects);
+      setAwards(mockAwards);
+      setCertifications(mockCertifications);
 
       toast({
         title: "Portfolio Loaded",
-        description: "All data loaded successfully from database",
+        description: "All data loaded successfully from local data",
       });
     } catch (error) {
       console.error('Error loading data:', error);
@@ -120,12 +104,12 @@ const DashboardPortfolio = () => {
     }
   };
 
-  // Admin login function
+  // Admin login function (simplified for mock data)
   const handleAdminLogin = async () => {
     try {
       setUpdating(true);
-      const result = await authAPI.adminLogin(adminPassword);
-      if (result.access_granted) {
+      // Simple password check for demo
+      if (adminPassword === 'admin123') {
         setIsAdminMode(true);
         setShowAdminLogin(false);
         toast({
@@ -135,7 +119,7 @@ const DashboardPortfolio = () => {
       } else {
         toast({
           title: "Invalid Password",
-          description: "Please enter correct admin password",
+          description: "Please enter correct admin password (admin123)",
           variant: "destructive"
         });
       }
@@ -181,7 +165,7 @@ const DashboardPortfolio = () => {
     e.preventDefault();
     try {
       setUpdating(true);
-      await contactAPI.sendMessage(contactForm);
+      // Mock contact form submission
       toast({
         title: "Message Sent",
         description: "Thank you for your message. I'll get back to you soon!",
@@ -214,7 +198,8 @@ const DashboardPortfolio = () => {
     e.preventDefault();
     try {
       setUpdating(true);
-      const updatedProfile = await profileAPI.updateProfile(profileEditData);
+      // Mock profile update
+      const updatedProfile = { ...profileData, ...profileEditData };
       setProfileData(updatedProfile);
       setShowProfileEdit(false);
       toast({
@@ -450,7 +435,7 @@ const DashboardPortfolio = () => {
                 type="password"
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
-                placeholder="Enter admin password"
+                placeholder="Enter admin password (admin123)"
               />
             </div>
             <Button onClick={handleAdminLogin} className="w-full" disabled={updating}>
@@ -498,7 +483,7 @@ const DashboardPortfolio = () => {
                   Share
                 </Button>
               </div>
-</div>
+            </div>
 
             {/* Key Metrics Cards */}
             <div className="grid grid-cols-4 gap-6">
