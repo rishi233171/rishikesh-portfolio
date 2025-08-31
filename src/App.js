@@ -306,12 +306,12 @@ function DashboardPortfolio() {
 
   // Handle admin login
   const handleAdminLogin = () => {
-    if (adminPassword === 'admin123') {
+    if (adminPassword === 'Life@2025') {
       setIsAdminMode(true);
       setShowAdminLogin(false);
       alert('✅ Admin Access Granted! You can now edit content.');
     } else {
-      alert('❌ Invalid Password. Try: admin123');
+      alert('❌ Invalid Password.');
     }
   };
 
