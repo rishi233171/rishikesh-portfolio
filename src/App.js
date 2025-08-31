@@ -33,7 +33,7 @@ function DashboardPortfolio() {
     projects_completed: "500+",
     cost_savings: "$5M+",
     accuracy_rate: "99.9%",
-    email: "rish233171@gmail.com",
+    email: "rishi233171@gmail.com",
     phone: "+91-7483532369",
     location: "Bhubaneswar, Odisha",
     linkedin: "linkedin.com/in/rishikesh-mohapatra"
