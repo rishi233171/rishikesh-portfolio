@@ -441,18 +441,29 @@ ${contactForm.message}
           {/* Profile Section */}
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <div style={{
-              width: '96px',
-              height: '96px',
-              background: 'linear-gradient(to bottom right, #4f46e5, #7c3aed)',
-              borderRadius: '24px',
-              margin: '0 auto 16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
-            }}>
-              <span style={{ color: 'white', fontSize: '48px' }}>👤</span>
-            </div>
+  width: '96px',
+  height: '96px',
+  borderRadius: '24px',
+  margin: '0 auto 16px',
+  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+  overflow: 'hidden'
+}}>
+  <img 
+    src={process.env.PUBLIC_URL + '/profile-photo.jpg'} 
+    alt="Rishikesh Mohapatra"
+    style={{
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      objectPosition: 'center'
+    }}
+    onError={(e) => {
+      // Fallback to emoji if image fails to load
+      e.target.style.display = 'none';
+      e.target.parentNode.innerHTML = '<div style="width:96px;height:96px;background:linear-gradient(to bottom right, #4f46e5, #7c3aed);border-radius:24px;display:flex;align-items:center;justify-content:center;"><span style="color:white;font-size:48px;">👤</span></div>';
+    }}
+  />
+</div>
             <h2 style={{
               fontSize: '20px',
               fontWeight: 'bold',
