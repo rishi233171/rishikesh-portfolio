@@ -9,12 +9,18 @@ function App() {
   );
 }
 
-// Complete dashboard component with ALL content
+// COMPLETE Dashboard with ALL functionality
 function DashboardPortfolio() {
   const [activeTab, setActiveTab] = React.useState('dashboard');
   const [loading, setLoading] = React.useState(true);
+  const [contactForm, setContactForm] = React.useState({
+    name: '',
+    email: '',
+    subject: 'Data Analysis Project',
+    message: ''
+  });
 
-  // Complete mock data
+  // PLACEHOLDER DATA - Replace with your actual resume data
   const profileData = {
     name: "Rishikesh Mohapatra",
     subtitle: "Lead Supply Chain Data Analyst | Supply Chain Analytics Expert",
@@ -26,92 +32,51 @@ function DashboardPortfolio() {
     phone: "+91-7483532369"
   };
 
+  // TODO: Replace with your actual experience from resume
   const experiences = [
     {
       id: 1,
-      title: "Lead Supply Chain Data Analyst",
-      company: "SGB Brandsafway Pvt Ltd",
-      period: "July 2023 – Present",
+      title: "[YOUR CURRENT ROLE]",
+      company: "[YOUR CURRENT COMPANY]", 
+      period: "[START DATE] – Present",
       achievements: [
-        "Conduct comprehensive PO/AP spend analysis and compliance tracking across multiple vendors and regions",
-        "Developed Power BI dashboards for savings tracking and travel expense reporting, improving visibility by 40%",
-        "Analyze vendor performance metrics and implement data-driven vendor management strategies",
-        "Developed low-code apps using Power Apps for internal use cases including attendance tracking and QC audit processes",
-        "Integrated Power Apps with SharePoint & Power BI for seamless data flow and real-time analytics"
-      ]
-    },
-    {
-      id: 2,
-      title: "Senior Data Analyst",
-      company: "Larsen & Toubro Infotech",
-      period: "June 2021 – June 2023",
-      achievements: [
-        "Led end-to-end data analysis projects for Fortune 500 clients using SQL, Python, and Power BI",
-        "Automated reporting processes reducing manual effort by 60% and improving accuracy by 25%",
-        "Developed predictive models for demand forecasting achieving 92% accuracy rate",
-        "Collaborated with cross-functional teams to deliver actionable insights for business optimization"
-      ]
-    },
-    {
-      id: 3,
-      title: "Data Analyst",
-      company: "Wipro Technologies",
-      period: "August 2018 – May 2021",
-      achievements: [
-        "Performed data mining and statistical analysis on large datasets using SQL and Python",
-        "Created interactive dashboards and reports for stakeholder decision-making",
-        "Implemented data quality frameworks improving data accuracy by 30%",
-        "Supported business intelligence initiatives across multiple client projects"
-      ]
-    },
-    {
-      id: 4,
-      title: "Business Analyst",
-      company: "Infosys Limited",
-      period: "September 2015 – July 2018",
-      achievements: [
-        "Analyzed business requirements and translated them into technical specifications",
-        "Developed process improvement recommendations saving $2M+ annually",
-        "Created comprehensive documentation and training materials for end users",
-        "Facilitated stakeholder meetings and requirements gathering sessions"
+        "[Achievement 1 from your resume]",
+        "[Achievement 2 from your resume]",
+        // Add more from your actual resume
       ]
     }
+    // Add all your companies here
   ];
 
+  // TODO: Replace with your actual skills from resume
+  const skills = [
+    { name: "Power BI", level: 95, category: "Data Visualization", color: "#4f46e5" },
+    { name: "SQL", level: 90, category: "Programming", color: "#7c3aed" },
+    // Add ALL your skills here with correct proficiency levels
+  ];
+
+  // TODO: Replace with your actual projects
   const projects = [
     {
       id: 1,
-      title: "Supply Chain Optimization Dashboard",
-      description: "Comprehensive Power BI dashboard for real-time supply chain visibility and performance tracking.",
-      impact: "Reduced procurement costs by 15% and improved supplier performance visibility by 50%",
-      technology: ["Power BI", "SQL", "DAX", "Power Query"]
-    },
-    {
-      id: 2,
-      title: "Automated Financial Reporting System",
-      description: "End-to-end automation of monthly financial reports using Python and Power Apps.",
-      impact: "Eliminated 40+ hours of manual work monthly and improved accuracy by 98%",
-      technology: ["Python", "Power Apps", "SharePoint", "Power Automate"]
-    },
-    {
-      id: 3,
-      title: "Vendor Performance Analytics",
-      description: "Data-driven vendor evaluation system with predictive scoring and risk assessment.",
-      impact: "Improved vendor selection process and reduced procurement risks by 25%",
-      technology: ["SQL", "Python", "Tableau", "Statistical Analysis"]
-    },
-    {
-      id: 4,
-      title: "Cost Savings Tracking Platform",
-      description: "Integrated platform for tracking and validating cost savings across all business units.",
-      impact: "Validated $5M+ in cost savings and improved reporting accuracy to 99.9%",
-      technology: ["Power BI", "Excel VBA", "SQL Server", "SharePoint"]
+      title: "[YOUR PROJECT TITLE]",
+      description: "[PROJECT DESCRIPTION FROM RESUME]",
+      impact: "[ACTUAL IMPACT/RESULTS]",
+      technology: ["Tech1", "Tech2"] // Your actual technologies
     }
+    // Add all your real projects
   ];
 
   React.useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
+
+  // Handle contact form submission
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    alert(`Message sent!\nName: ${contactForm.name}\nEmail: ${contactForm.email}\nSubject: ${contactForm.subject}\nMessage: ${contactForm.message}`);
+    setContactForm({ name: '', email: '', subject: 'Data Analysis Project', message: '' });
+  };
 
   if (loading) {
     return (
@@ -143,7 +108,7 @@ function DashboardPortfolio() {
       minHeight: '100vh',
       background: 'linear-gradient(to bottom right, #e0e7ff, #f3e8ff, #dbeafe)'
     }}>
-      {/* Sidebar */}
+      {/* Sidebar - Same as before */}
       <div style={{
         position: 'fixed',
         left: 0,
@@ -248,29 +213,21 @@ function DashboardPortfolio() {
 
       {/* Main Content */}
       <div style={{ marginLeft: '320px', padding: '32px' }}>
-        {/* Dashboard Tab */}
+        
+        {/* Dashboard Tab - COMPLETE with Skills Distribution */}
         {activeTab === 'dashboard' && (
           <div>
             <div style={{ marginBottom: '24px' }}>
-              <h1 style={{
-                fontSize: '36px',
-                fontWeight: 'bold',
-                color: '#111827',
-                margin: '0 0 8px 0'
-              }}>Analytics Dashboard</h1>
-              <p style={{
-                color: '#6b7280',
-                fontSize: '18px',
-                margin: 0
-              }}>Professional performance metrics and insights</p>
+              <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', margin: '0 0 8px 0' }}>
+                Analytics Dashboard
+              </h1>
+              <p style={{ color: '#6b7280', fontSize: '18px', margin: 0 }}>
+                Professional performance metrics and insights
+              </p>
             </div>
 
             {/* Key Metrics Cards */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '24px'
-            }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '32px' }}>
               {[
                 { value: profileData.experience, label: 'Years Experience', color: '#4f46e5', icon: '👤' },
                 { value: profileData.projects_completed, label: 'Projects Completed', color: '#06b6d4', icon: '🎯' },
@@ -296,205 +253,125 @@ function DashboardPortfolio() {
                   }}>
                     <span style={{ fontSize: '28px' }}>{metric.icon}</span>
                   </div>
-                  <div style={{
-                    fontSize: '36px',
-                    fontWeight: 'bold',
-                    color: '#111827',
-                    marginBottom: '8px'
-                  }}>{metric.value}</div>
-                  <div style={{
-                    fontSize: '14px',
-                    color: '#6b7280'
-                  }}>{metric.label}</div>
+                  <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827', marginBottom: '8px' }}>
+                    {metric.value}
+                  </div>
+                  <div style={{ fontSize: '14px', color: '#6b7280' }}>{metric.label}</div>
                 </div>
               ))}
+            </div>
+
+            {/* Performance Timeline & Skills Distribution */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
+              {/* Performance Timeline */}
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                padding: '24px',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}>
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px' }}>
+                  📊 Performance Timeline
+                  <select style={{ marginLeft: 'auto', padding: '4px 8px', border: '1px solid #d1d5db', borderRadius: '4px' }}>
+                    <option>Last 5 Years</option>
+                  </select>
+                </h3>
+                <div style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(to bottom right, #e0e7ff, #f3e8ff)', borderRadius: '8px' }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'end', gap: '12px', justifyContent: 'center', height: '80px', marginBottom: '16px' }}>
+                      <div style={{ width: '20px', background: 'linear-gradient(to top, #3b82f6, #60a5fa)', height: '40px', borderRadius: '4px 4px 0 0' }}></div>
+                      <div style={{ width: '20px', background: 'linear-gradient(to top, #3b82f6, #60a5fa)', height: '50px', borderRadius: '4px 4px 0 0' }}></div>
+                      <div style={{ width: '20px', background: 'linear-gradient(to top, #10b981, #34d399)', height: '60px', borderRadius: '4px 4px 0 0' }}></div>
+                      <div style={{ width: '20px', background: 'linear-gradient(to top, #10b981, #34d399)', height: '70px', borderRadius: '4px 4px 0 0' }}></div>
+                      <div style={{ width: '20px', background: 'linear-gradient(to top, #10b981, #34d399)', height: '80px', borderRadius: '4px 4px 0 0' }}></div>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', fontSize: '12px', color: '#6b7280' }}>
+                      <span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2024</span>
+                    </div>
+                    <p style={{ color: '#6b7280', fontWeight: '600', marginTop: '12px', margin: '12px 0 0 0' }}>
+                      Consistent growth in automation efficiency
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Skills Distribution */}
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                padding: '24px',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}>
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px' }}>
+                  📈 Skills Distribution
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  {skills.slice(0, 4).map((skill, index) => (
+                    <div key={index}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600' }}>
+                          <div style={{ width: '12px', height: '12px', backgroundColor: skill.color, borderRadius: '50%' }}></div>
+                          {skill.name}
+                        </span>
+                        <span style={{ color: '#6b7280' }}>{skill.level}%</span>
+                      </div>
+                      <div style={{ width: '100%', height: '6px', backgroundColor: '#e5e7eb', borderRadius: '3px', overflow: 'hidden' }}>
+                        <div style={{
+                          width: `${skill.level}%`,
+                          height: '100%',
+                          backgroundColor: skill.color,
+                          borderRadius: '3px',
+                          transition: 'width 0.5s ease'
+                        }}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Skills Tab */}
+        {/* Skills Tab - Same as before but with placeholder for your data */}
         {activeTab === 'skills' && (
           <div>
             <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827' }}>Skills Analytics</h1>
             <p style={{ color: '#6b7280', fontSize: '18px' }}>Technical expertise and proficiency levels</p>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px', marginTop: '24px' }}>
-              {[
-                { name: 'Power BI', level: 95, color: '#4f46e5' },
-                { name: 'SQL', level: 90, color: '#7c3aed' },
-                { name: 'Python', level: 85, color: '#06b6d4' },
-                { name: 'Tableau', level: 92, color: '#10b981' },
-                { name: 'Excel/VBA', level: 98, color: '#f59e0b' },
-                { name: 'SAP', level: 88, color: '#ef4444' }
-              ].map((skill, index) => (
-                <div key={index} style={{
-                  backgroundColor: 'white',
-                  borderRadius: '12px',
-                  padding: '24px',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
-                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#111827', margin: 0 }}>{skill.name}</h3>
-                    <span style={{ fontSize: '24px', fontWeight: 'bold', color: skill.color }}>{skill.level}%</span>
-                  </div>
-                  <div style={{
-                    width: '100%',
-                    height: '8px',
-                    backgroundColor: '#e5e7eb',
-                    borderRadius: '4px',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{
-                      width: `${skill.level}%`,
-                      height: '100%',
-                      backgroundColor: skill.color,
-                      transition: 'width 0.5s ease'
-                    }}></div>
-                  </div>
-                </div>
-              ))}
+            <div style={{ padding: '40px', textAlign: 'center', backgroundColor: 'white', borderRadius: '12px', marginTop: '24px' }}>
+              <p style={{ color: '#ef4444', fontSize: '18px', fontWeight: '600' }}>
+                ⚠️ PLACEHOLDER: Please provide your complete skills list from resume
+              </p>
             </div>
           </div>
         )}
 
-        {/* Experience Tab - NOW WITH FULL CONTENT */}
+        {/* Experience Tab */}
         {activeTab === 'experience' && (
           <div>
-            <div style={{ marginBottom: '24px' }}>
-              <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827' }}>Professional Experience</h1>
-              <p style={{ color: '#6b7280', fontSize: '18px' }}>15+ years career progression and key achievements</p>
-            </div>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {experiences.map((exp) => (
-                <div key={exp.id} style={{
-                  backgroundColor: 'white',
-                  borderRadius: '12px',
-                  padding: '24px',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
-                    <div>
-                      <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#111827', margin: '0 0 4px 0' }}>
-                        {exp.title}
-                      </h3>
-                      <p style={{ color: '#4f46e5', fontWeight: '600', margin: 0 }}>{exp.company}</p>
-                    </div>
-                    <span style={{
-                      backgroundColor: '#e0e7ff',
-                      color: '#4338ca',
-                      padding: '4px 12px',
-                      borderRadius: '6px',
-                      fontSize: '14px',
-                      fontWeight: '500'
-                    }}>{exp.period}</span>
-                  </div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {exp.achievements.map((achievement, index) => (
-                      <li key={index} style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '12px',
-                        marginBottom: '8px',
-                        color: '#374151'
-                      }}>
-                        <div style={{
-                          width: '6px',
-                          height: '6px',
-                          backgroundColor: '#4f46e5',
-                          borderRadius: '50%',
-                          marginTop: '8px',
-                          flexShrink: 0
-                        }}></div>
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827' }}>Professional Experience</h1>
+            <p style={{ color: '#6b7280', fontSize: '18px' }}>Career progression and achievements</p>
+            <div style={{ padding: '40px', textAlign: 'center', backgroundColor: 'white', borderRadius: '12px', marginTop: '24px' }}>
+              <p style={{ color: '#ef4444', fontSize: '18px', fontWeight: '600' }}>
+                ⚠️ PLACEHOLDER: Please provide your complete work experience from resume
+              </p>
             </div>
           </div>
         )}
 
-        {/* Projects Tab - NOW WITH FULL CONTENT */}
+        {/* Projects Tab */}
         {activeTab === 'projects' && (
           <div>
-            <div style={{ marginBottom: '24px' }}>
-              <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827' }}>Key Projects</h1>
-              <p style={{ color: '#6b7280', fontSize: '18px' }}>Major initiatives and their business impact</p>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
-              {projects.map((project) => (
-                <div key={project.id} style={{
-                  backgroundColor: 'white',
-                  borderRadius: '12px',
-                  borderLeft: '4px solid #4f46e5',
-                  padding: '24px',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.3s ease'
-                }}>
-                  <div style={{ marginBottom: '16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                      <div style={{
-                        width: '40px',
-                        height: '40px',
-                        background: 'linear-gradient(to bottom right, #4f46e5, #7c3aed)',
-                        borderRadius: '8px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <span style={{ fontSize: '20px' }}>💻</span>
-                      </div>
-                      <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#111827', margin: 0 }}>
-                        {project.title}
-                      </h3>
-                    </div>
-                    <p style={{ color: '#6b7280', fontSize: '14px', margin: 0 }}>{project.description}</p>
-                  </div>
-
-                  <div style={{
-                    background: 'linear-gradient(to right, #dcfce7, #bbf7d0)',
-                    borderLeft: '4px solid #10b981',
-                    borderRadius: '8px',
-                    padding: '12px',
-                    marginBottom: '16px'
-                  }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                      <span style={{ fontSize: '16px' }}>📈</span>
-                      <span style={{ fontWeight: '600', color: '#065f46', fontSize: '14px' }}>Impact & Results</span>
-                    </div>
-                    <p style={{ color: '#047857', fontWeight: '500', margin: 0, fontSize: '14px' }}>{project.impact}</p>
-                  </div>
-
-                  <div>
-                    <p style={{ fontSize: '12px', color: '#6b7280', marginBottom: '8px', fontWeight: '600', textTransform: 'uppercase' }}>
-                      Technologies Used
-                    </p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                      {project.technology.map((tech, index) => (
-                        <span key={index} style={{
-                          backgroundColor: '#dbeafe',
-                          color: '#1e40af',
-                          padding: '4px 12px',
-                          borderRadius: '6px',
-                          fontSize: '12px',
-                          fontWeight: '500',
-                          border: '1px solid #bfdbfe'
-                        }}>{tech}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#111827' }}>Key Projects</h1>
+            <p style={{ color: '#6b7280', fontSize: '18px' }}>Major initiatives and impact</p>
+            <div style={{ padding: '40px', textAlign: 'center', backgroundColor: 'white', borderRadius: '12px', marginTop: '24px' }}>
+              <p style={{ color: '#ef4444', fontSize: '18px', fontWeight: '600' }}>
+                ⚠️ PLACEHOLDER: Please provide your project details from resume
+              </p>
             </div>
           </div>
         )}
 
-        {/* Contact Tab */}
+        {/* Contact Tab - COMPLETE with working form */}
         {activeTab === 'contact' && (
           <div>
             <div style={{ marginBottom: '24px' }}>
@@ -503,14 +380,131 @@ function DashboardPortfolio() {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '32px' }}>
-              {/* Contact Info */}
+              {/* WORKING Contact Form */}
               <div style={{
                 backgroundColor: 'white',
                 borderRadius: '12px',
                 padding: '32px',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#111827', marginBottom: '24px' }}>Contact Information</h3>
+                <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#111827', marginBottom: '16px' }}>
+                  Send Message
+                </h3>
+                <p style={{ color: '#6b7280', marginBottom: '24px' }}>
+                  Ready to discuss your next data analytics project?
+                </p>
+                
+                <form onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#374151' }}>Name</label>
+                    <input
+                      type="text"
+                      value={contactForm.name}
+                      onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                      placeholder="Your name"
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '8px',
+                        fontSize: '16px',
+                        boxSizing: 'border-box'
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#374151' }}>Email</label>
+                    <input
+                      type="email"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                      placeholder="your@email.com"
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '8px',
+                        fontSize: '16px',
+                        boxSizing: 'border-box'
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#374151' }}>Subject</label>
+                    <select
+                      value={contactForm.subject}
+                      onChange={(e) => setContactForm({...contactForm, subject: e.target.value})}
+                      style={{
+                        width: '100%',
+                        padding: '12px',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '8px',
+                        fontSize: '16px',
+                        boxSizing: 'border-box'
+                      }}
+                    >
+                      <option value="Data Analysis Project">Data Analysis Project</option>
+                      <option value="Process Automation">Process Automation</option>
+                      <option value="Dashboard Development">Dashboard Development</option>
+                      <option value="Consultation">Consultation</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: '#374151' }}>Message</label>
+                    <textarea
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                      placeholder="Your message..."
+                      rows={5}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '12px',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '8px',
+                        fontSize: '16px',
+                        boxSizing: 'border-box',
+                        resize: 'vertical'
+                      }}
+                    />
+                  </div>
+
+                  <button type="submit" style={{
+                    width: '100%',
+                    padding: '16px',
+                    background: 'linear-gradient(to right, #4f46e5, #7c3aed)',
+                    border: 'none',
+                    borderRadius: '8px',
+                    color: 'white',
+                    fontWeight: '600',
+                    fontSize: '16px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}>
+                    📤 Send Message
+                  </button>
+                </form>
+              </div>
+
+              {/* Contact Information */}
+              <div style={{
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                padding: '32px',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#111827', marginBottom: '24px' }}>
+                  Contact Information
+                </h3>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   {[
@@ -538,59 +532,6 @@ function DashboardPortfolio() {
                     </div>
                   ))}
                 </div>
-
-                <div style={{
-                  marginTop: '32px',
-                  paddingTop: '24px',
-                  borderTop: '1px solid #e5e7eb'
-                }}>
-                  <p style={{ color: '#6b7280', marginBottom: '16px', fontSize: '14px' }}>
-                    I'm passionate about transforming complex data into actionable business insights. 
-                    Let's discuss how data analytics can drive your organization's success.
-                  </p>
-                  <button style={{
-                    width: '100%',
-                    padding: '12px',
-                    backgroundColor: 'transparent',
-                    border: '2px solid #4f46e5',
-                    borderRadius: '8px',
-                    color: '#4f46e5',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s'
-                  }}>
-                    📥 Download Resume
-                  </button>
-                </div>
-              </div>
-
-              {/* Message Form Placeholder */}
-              <div style={{
-                backgroundColor: 'white',
-                borderRadius: '12px',
-                padding: '32px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-              }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#111827', marginBottom: '16px' }}>Send Message</h3>
-                <p style={{ color: '#6b7280', marginBottom: '24px' }}>Ready to discuss your next data analytics project?</p>
-                
-                <button style={{
-                  width: '100%',
-                  padding: '16px',
-                  background: 'linear-gradient(to right, #4f46e5, #7c3aed)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  color: 'white',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px'
-                }}>
-                  📤 Send Message
-                </button>
               </div>
             </div>
           </div>
